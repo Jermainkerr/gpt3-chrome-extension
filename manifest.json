@@ -1,8 +1,9 @@
-{
-  "name": "GPT-3 Writer",
-  "description": "Write a blog post in the style of your favorite thinker anywhere!",
+ {
+  "name": "keyword generater",
+  "description": "type your niche, we'll do the heavy lifting",
   "version": "1.0",
   "manifest_version": 3,
+  
   "icons": {
     "48": "assets/48.png",
     "72": "assets/72.png",
@@ -11,6 +12,17 @@
   },
   "action": {
     "default_popup": "index.html",
-    "default_title": "Generate blog post"
-  }
+    "default_title": "Generate keywords"
+  },
+  "background": {
+    "service_worker": "scripts/contextMenuServiceWorker.js"
+  },
+   "permissions": ["contextMenus", "tabs", "storage"],
+   "host_permissions": ["https://*/*"],
+   "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["scripts/content.js"]
+    }
+  ]
 }
